@@ -129,7 +129,7 @@ The function is also published here on Open WebUI's site.
 
 10. Toggle the function on and now it will be available in your model dropdown in the top left!
 
-To open n8n at any time, visit <http://localhost:5678/> in your browser.
+To open n8n at any time, visit <http://localhost:5678/> in your browser. To open Open WebUI at any time, visit <http://localhost:3000/>.
 
 With your n8n instance, you’ll have access to over 400 integrations and a
 suite of basic and advanced AI nodes such as
