@@ -2,6 +2,8 @@
 
 **Self-hosted AI Starter Kit** is an open-source Docker Compose template designed to swiftly initialize a comprehensive local AI and low-code development environment.
 
+Download [Cole's](https://github.com/coleam00/ai-agents-masterclass/tree/main/local-ai-packaged) N8N + OpenWebUI integration [directly on the Open WebUI site](https://openwebui.com/f/coleam/n8n_pipe/). (more instructions below)
+
 ![n8n.io - Screenshot](https://raw.githubusercontent.com/n8n-io/self-hosted-ai-starter-kit/main/assets/n8n-demo.gif)
 
 Curated by <https://github.com/n8n-io>, it combines the self-hosted n8n
@@ -16,7 +18,9 @@ quickly get started with building self-hosted AI workflows.
 ✅ [**Self-hosted n8n**](https://n8n.io/) - Low-code platform with over 400
 integrations and advanced AI components
 
-✅ [**Ollama**](https://ollama.com/) - Cross-platform LLM platform to install
+✅ [**Ollama**](https://openwebui.com/) - ChatGPT-like interface to privately interact with your local models and N8N agents
+
+✅ [**Open WebUI**](https://ollama.com/) - Cross-platform LLM platform to install
 and run the latest local LLMs
 
 ✅ [**Qdrant**](https://qdrant.tech/) - Open-source, high performance vector
@@ -40,7 +44,7 @@ Engineering world, handles large amounts of data safely.
 ### Cloning the Repository
 
 ```bash
-git clone https://github.com/n8n-io/self-hosted-ai-starter-kit.git
+git clone https://github.com/transistorized-cmd/self-hosted-ai-starter-kit.git
 cd self-hosted-ai-starter-kit
 ```
 
@@ -98,10 +102,32 @@ After completing the installation steps above, simply follow the steps below to 
    have to do this once.
 2. Open the included workflow:
    <http://localhost:5678/workflow/srOnR8PAY3u4RSwb>
-3. Select **Test workflow** to start running the workflow.
-4. If this is the first time you’re running the workflow, you may need to wait
+3. Create credentials for every service:
+
+   Ollama URL: http://ollama:11434
+
+   Postgres: use DB, username, and password from .env. Host is postgres
+
+   Qdrant URL: http://qdrant:6333 (API key can be whatever since this is running locally)
+
+   Google Drive: Follow this guide from n8n. Don't use localhost for the redirect URI, just use another domain you have, it will still work! Alternatively, you can set up local file triggers.
+   
+4. Select **Test workflow** to start running the workflow.
+5. If this is the first time you’re running the workflow, you may need to wait
    until Ollama finishes downloading Llama3.2. You can inspect the docker
    console logs to check on the progress.
+   
+6. Make sure to toggle the workflow as active and copy the "Production" webhook URL!
+
+7. Open http://localhost:3000/ in your browser to set up Open WebUI. You’ll only have to do this once. You are NOT creating an account with Open WebUI in the setup here, it is only a local account for your instance!
+
+8. Go to Workspace -> Functions -> Add Function -> Give name + description then paste in the code from n8n_pipe.py
+
+The function is also published here on Open WebUI's site.
+
+9. Click on the gear icon and set the n8n_url to the production URL for the webhook you copied in a previous step.
+
+10. Toggle the function on and now it will be available in your model dropdown in the top left!
 
 To open n8n at any time, visit <http://localhost:5678/> in your browser.
 
